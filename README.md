@@ -1,6 +1,10 @@
 # web-dev-concepts
 A repo that contains code for noob juniors to test their web dev concepts
 
+# Deployed Link:
+https://webd-bits.vercel.app/
+CSS is a work in progress
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
