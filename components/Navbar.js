@@ -1,11 +1,18 @@
-import React from 'react'
+import Link from "next/link";
+import React from "react";
+import Modal from "./Modal";
 
 function Navbar() {
   return (
-    <div className='bg-red-500 pt-2 h-10 flex justify-center'>
-        <p className='text-white'>This site tests out your webd knowledge</p>
+    <div className="bg-red-500 font-sans text-white pt-1 text-2xl pb-2 flex justify-between">
+      <Link href="/" passHref>
+        <h1 className="pl-4">Home</h1>
+      </Link>
+      <ul className="flex justify-around" style={{ width: "40%" }}>
+        <Modal name={"About"} />
+      </ul>
     </div>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
