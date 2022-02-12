@@ -90,6 +90,13 @@ export default function Home() {
       description:
         "XSS is a way of injecting code into a website. Also very dangerous if you don't code the backend properly",
     },
+    {
+      id: 12,
+      name: "Caching",
+      link: "/cache",
+      description:
+        "Caching is a way of storing data on the server. It is a way of storing data on the server.",
+    },
   ]);
   return (
     <>
