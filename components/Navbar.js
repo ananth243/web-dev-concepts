@@ -4,11 +4,11 @@ import Modal from "./Modal";
 
 function Navbar() {
   return (
-    <div className="bg-red-500 font-sans text-white pt-1 text-2xl pb-2 flex justify-between">
+    <div className="bg-red-500 font-sans text-white text-2xl flex p-4 space-x-4">
       <Link href="/" passHref>
-        <button className="pl-4">Home</button>
+        <button>Home</button>
       </Link>
-      <ul className="flex justify-around" style={{ width: "40%" }}>
+      <ul className="flex justify-around">
         <Modal name={"About"} />
       </ul>
     </div>
