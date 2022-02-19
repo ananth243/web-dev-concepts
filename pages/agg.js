@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import Navbar from "../components/Navbar";
 import { post } from "axios";
+import UrlContext from "../Providers/UrlContext";
 
-function agg() {
+function Agg() {
+  const { url } = useContext(UrlContext);
   async function execute() {
     try {
       let body = {
@@ -74,4 +76,4 @@ function agg() {
   );
 }
 
-export default agg;
+export default Agg;

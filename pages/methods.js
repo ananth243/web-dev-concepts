@@ -5,7 +5,7 @@ function methods() {
   return (
     <>
       <Navbar />
-      <div>methods</div>
+      p
     </>
   );
 }
