@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Navbar from "../../components/Navbar";
 import { post } from "axios";
 import UrlContext from "../../Providers/UrlContext";
-import { collection, getDocs, addDoc } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../config/Firebase";
 
 function Agg() {
