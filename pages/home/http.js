@@ -1,7 +1,9 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
 import Navbar from "../../components/Navbar";
+import validateUrl from "../../components/validateUrl";
 import UrlContext from "../../Providers/UrlContext";
+
 function Http() {
   const { url } = useContext(UrlContext);
   const [message, setMessage] = useState({
@@ -9,7 +11,7 @@ function Http() {
     message: null,
   });
   async function execute() {
-    if (url && process.env.DEPLOYED_APP !== process.env.DEPLOYED_APP) {
+    if (url && url !== window.location.origin) {
       try {
         const res = await axios.get(url + "http");
         const res2 = await axios.post(url + "http", { message: "Hey there!" });

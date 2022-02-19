@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
 import Navbar from "../../components/Navbar";
+import validateUrl from "../../components/validateUrl";
 import UrlContext from "../../Providers/UrlContext";
 
 function Methods() {
@@ -10,7 +11,7 @@ function Methods() {
   });
   const { url } = useContext(UrlContext);
   async function execute() {
-    if (url && url !== process.env.DEPLOYED_APP) {
+    if (url && url !== window.location.origin) {
       try {
         const id = Math.random() * 2000;
         const get = await axios.get(url + `/${id}`);

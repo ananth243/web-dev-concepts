@@ -2,63 +2,33 @@ import React, { useContext } from "react";
 import Navbar from "../../components/Navbar";
 import { post } from "axios";
 import UrlContext from "../../Providers/UrlContext";
+import { collection, getDocs, addDoc } from "firebase/firestore";
+import { db } from "../../config/Firebase";
 
 function Agg() {
   const { url } = useContext(UrlContext);
   async function execute() {
     try {
-      let body = {
-        data: [
-          {
-            sub: "Math",
-            name: "John Doe",
-            marks: Math.floor(Math.random() * 100),
-          },
-          {
-            sub: "Physics",
-            name: "Katie Yorker",
-            marks: Math.floor(Math.random() * 100),
-          },
-          {
-            sub: "Math",
-            name: "Katie Yorker",
-            marks: Math.floor(Math.random() * 100),
-          },
-          {
-            sub: "Physics",
-            name: "John Doe",
-            marks: Math.floor(Math.random() * 100),
-          },
-          {
-            sub: "Math",
-            name: "Newie Porter",
-            marks: Math.floor(Math.random() * 100),
-          },
-          {
-            sub: "Physics",
-            name: "John Doe",
-            marks: Math.floor(Math.random() * 100),
-          },
-        ],
-      };
+      const body = await getDocs(collection(db, "aggregate"));
       const expectation = [
-        {
-          subject: "Math",
-          avg:
-            (body.data[0].marks + body.data[2].marks + body.data[4].marks) / 3,
-        },
-        {
-          subject: "Physics",
-          avg:
-            (body.data[1].marks + body.data[3].marks + body.data[5].marks) / 3,
-        },
+        { department: "Legal", average: 47.57142857142857 },
+        { department: "Training", average: 40.166666666666664 },
+        { department: "Sales", average: 63.214285714285715 },
+        { department: "Human Resources", average: 55.42857142857143 },
+        { department: "Services", average: 50.61538461538461 },
+        { department: "Research and Development", average: 39.888888888888886 },
+        { department: "Accounting", average: 60.8 },
+        { department: "Business Development", average: 64.33333333333333 },
+        { department: "Support", average: 52 },
+        { department: "Marketing", average: 56.25 },
+        { department: "Product Management", average: 48.81818181818182 },
+        { department: "Engineering", average: 29.555555555555557 },
       ];
       const response = await post(url, body);
       if (response === expectation) {
         return true;
       } else return false;
     } catch (error) {
-      //Do something with the error
       console.log(error);
     }
   }

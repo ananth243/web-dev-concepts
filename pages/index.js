@@ -12,7 +12,7 @@ export default function Home() {
     if (state) {
       router.push("/home");
     }
-  }, [state]);
+  }, [router, state]);
   
   return (
     <>
