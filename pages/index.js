@@ -97,6 +97,13 @@ export default function Home() {
       description:
         "Caching is a way of storing data on the server. It is a way of storing data on the server.",
     },
+    {
+      id: 13,
+      name: "Streams (Node Streams)",
+      link: "/stream",
+      description:
+        "Streams are a way of handling data as it is being sent from the server to the client.",
+    }
   ]);
   return (
     <>

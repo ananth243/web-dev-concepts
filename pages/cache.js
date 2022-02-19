@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import Navbar from "../components/Navbar";
 import { post } from "axios";
-
-function cache() {
+import UrlContext from "../Providers/UrlContext";
+function Cache() {
+  const { url } = useContext(UrlContext);
   async function cache() {
-    const url = localStorage.getItem("url");
     let intial = new Date();
     try {
       await post(url, {
@@ -51,4 +51,4 @@ function cache() {
   );
 }
 
-export default cache;
+export default Cache;
