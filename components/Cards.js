@@ -5,8 +5,9 @@ function Cards({ link, name, description }) {
   return (
     <div className={styles.container}>
       <a className={styles.card1} href={link}>
-        <h3 className="text-black">{name}</h3>
-        <p className={styles.small}>{description}</p>
+        <h3 className={styles.text}>{name}</h3>
+        <div className={styles.hr} />
+        <p className={styles.text}>{description}</p>
         <div className={styles.goCorner}>
           <div className={styles.goArrow}>→</div>
         </div>
