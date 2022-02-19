@@ -27,14 +27,12 @@ function Navbar() {
   }
   return (
     <>
-      <div className="bg-red-500 font-sans text-white pt-1 text-2xl pb-2 flex justify-between">
-        <Link href="/home" passHref>
-          <button className="pl-4">Home</button>
+      <div className="bg-red-500 font-sans text-white text-2xl flex p-4 space-x-4">
+        <Link href={state ? "/home" : "/"} passHref>
+          <button>Home</button>
         </Link>
-        <ul className="flex justify-around" style={{ width: "40%" }}>
+        <ul className="flex justify-around">
           <Modal name={"About"} />
-        </ul>
-        <ul>
           {!state && (
             <button
               onClick={() => {

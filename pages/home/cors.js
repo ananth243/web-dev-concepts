@@ -1,4 +1,4 @@
-import Navbar from "../../../components/Navbar";
+import Navbar from "../../components/Navbar";
 import { get } from "axios";
 import { useContext, useState } from "react";
 import UrlContext from "../../Providers/UrlContext";

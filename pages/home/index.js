@@ -139,7 +139,7 @@ export default function Home() {
           />
         </p>
       </div>
-      <div className="grid gap-4 grid-cols-autofit">
+      <div className="grid gap-8 p-4 grid-cols-autofit place-items-stretch grid-rows-1 my-5">
         {options &&
           options.map((card) => (
             <Cards
