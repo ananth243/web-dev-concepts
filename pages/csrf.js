@@ -1,13 +1,13 @@
-import React from 'react'
-import Navbar from '../components/Navbar'
+import React from "react";
+import Navbar from "../components/Navbar";
 
 function csrf() {
   return (
-      <>
+    <>
       <Navbar />
-    <div>csrf</div>
-      </>
-  )
+      <div>csrf</div>
+    </>
+  );
 }
 
-export default csrf
+export default csrf;

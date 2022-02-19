@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "../styles/Card.module.css";
+import Link from "next/link";
 
 function Cards({ link, name, description }) {
   return (

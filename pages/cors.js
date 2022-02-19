@@ -1,17 +1,27 @@
 import Navbar from "../components/Navbar";
 import { get } from "axios";
+import { useContext, useState } from "react";
+import UrlContext from "../Providers/UrlContext";
 
 export default function Cors() {
+  const { url } = useContext(UrlContext);
+  const [message, setMessage] = useState({
+    status: null,
+    message: null,
+  });
   async function execute() {
-    const url = localStorage.getItem("url");
-    try {
-      const response = await get(url + "/cors");
-      console.log(response);
-      if (response.status === 200 && response.data === "Hello World") {
-        return true;
-      } else throw Error("Invalid fields sent");
-    } catch (error) {
-      console.log(error);
+    if (url && window.location.origin !== process.env.DEPLOYED_APP) {
+      try {
+        const response = await get(url + "/cors");
+        if (response.status === 200 && response.data === "Hello World") {
+          setMessage({ success: true, message: "Success!" });
+          return true;
+        } else throw Error("Invalid fields sent");
+      } catch (error) {
+        setMessage({ success: false, message: error.message });
+      }
+    } else {
+      setMessage({ status: false, message: "Please enter a valid url" });
     }
   }
   return (
@@ -42,10 +52,12 @@ export default function Cors() {
         <p>
           This will allow the browser to make requests to your server. As soon
           as you click submit, the website will send a GET request to
-          `&apos;`/`&apos;` on your server. It should respond with `&quot;`Hello
-          World`&quot;` indicating a success
+          &apos;/&apos; on your server. It should respond with &quot;Hello
+          World&quot; indicating a success
         </p>
         <button onClick={() => execute()}>Execute</button>
+        {message.status && <h1 className="text-white">{message.message}</h1>}
+        {!message.status && <h1 className="text-red-600">{message.message}</h1>}
       </div>
     </>
   );
