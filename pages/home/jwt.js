@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useContext } from "react";
-import Navbar from "../components/Navbar";
-import UrlContext from "../Providers/UrlContext";
+import Navbar from "../../../components/Navbar";
+import UrlContext from "../../Providers/UrlContext";
 
 function Jwt() {
   const { url } = useContext(UrlContext);

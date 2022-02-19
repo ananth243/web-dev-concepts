@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import Navbar from "../components/Navbar";
+import Navbar from "../../../components/Navbar";
 import { post } from "axios";
-import UrlContext from "../Providers/UrlContext";
+import UrlContext from "../../Providers/UrlContext";
 function Cache() {
   const { url } = useContext(UrlContext);
   async function cache() {

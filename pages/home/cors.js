@@ -1,7 +1,7 @@
-import Navbar from "../components/Navbar";
+import Navbar from "../../../components/Navbar";
 import { get } from "axios";
 import { useContext, useState } from "react";
-import UrlContext from "../Providers/UrlContext";
+import UrlContext from "../../Providers/UrlContext";
 
 export default function Cors() {
   const { url } = useContext(UrlContext);
@@ -10,7 +10,7 @@ export default function Cors() {
     message: null,
   });
   async function execute() {
-    if (url && window.location.origin !== process.env.DEPLOYED_APP) {
+    if (url && url !== process.env.DEPLOYED_APP) {
       try {
         const response = await get(url + "/cors");
         if (response.status === 200 && response.data === "Hello World") {
