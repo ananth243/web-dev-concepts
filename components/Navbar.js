@@ -28,11 +28,25 @@ function Navbar() {
   return (
     <>
       <div className="bg-red-500 font-sans text-white text-2xl flex p-4 space-x-4">
+        <div className="flex justify-around space-x-4 w-full">
         <Link href={state ? "/home" : "/"} passHref>
           <button>Home</button>
         </Link>
-        <ul className="flex justify-around">
           <Modal name={"About"} />
+          <div className="grow" />
+            <div>
+              {state && (
+                <input
+                  type="url"
+                  value={url}
+                  className="text-black px-2 py-1 rounded"
+                  onChange={(e) => {
+                    setUrl(e.target.value);
+                  }}
+                  placeholder="Your server URL"
+                />
+              )}
+            </div>
           {!state && (
             <button
               onClick={() => {
@@ -51,19 +65,7 @@ function Navbar() {
               Sign Out
             </button>
           )}
-        </ul>
-      </div>
-      <div>
-        {state && (
-          <input
-            type="url"
-            value={url}
-            className="text-black"
-            onChange={(e) => {
-              setUrl(e.target.value);
-            }}
-          />
-        )}
+        </div>
       </div>
     </>
   );
