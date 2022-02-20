@@ -1,9 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 import { post } from "axios";
 import UrlContext from "../../Providers/UrlContext";
+import AuthContext from "../../Providers/AuthContext";
+import { useRouter } from "next/router";
+
 function Cache() {
   const { url } = useContext(UrlContext);
+  const { state } = useContext(AuthContext);
+  const router = useRouter();
+  useEffect(() => {
+    if (!state) {
+      router.push("/");
+    }
+  }, [state, router]);
   async function cache() {
     let intial = new Date();
     try {

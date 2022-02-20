@@ -1,12 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Navbar from "../../components/Navbar";
 import { post } from "axios";
 import UrlContext from "../../Providers/UrlContext";
+import AuthContext from "../../Providers/AuthContext";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../config/Firebase";
+import { useRouter } from "next/router";
 
 function Agg() {
   const { url } = useContext(UrlContext);
+  const { state } = useContext(AuthContext);
+  const router = useRouter();
+  useEffect(() => {
+    if (!state) {
+      router.push("/");
+    }
+  }, [state, router]);
   async function execute() {
     try {
       const body = await getDocs(collection(db, "aggregate"));

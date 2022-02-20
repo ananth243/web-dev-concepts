@@ -1,10 +1,18 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Navbar from "../../components/Navbar";
-import validateUrl from "../../components/validateUrl";
 import UrlContext from "../../Providers/UrlContext";
+import AuthContext from "../../Providers/AuthContext";
+import { useRouter } from "next/router";
 
 function Methods() {
+  const { state } = useContext(AuthContext);
+  const router = useRouter();
+  useEffect(() => {
+    if (!state) {
+      router.push("/");
+    }
+  }, [state, router]);
   const message = useState({
     status: null,
     message: null,

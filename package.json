@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.4.0",
     "axios": "^0.25.0",
     "firebase": "^9.6.7",
     "jsonwebtoken": "^8.5.1",

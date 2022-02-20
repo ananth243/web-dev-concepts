@@ -14,7 +14,6 @@ function Navbar() {
   const provider = new GoogleAuthProvider();
   function signIn() {
     signInWithPopup(auth, provider).then((res) => {
-      setState(true);
       router.push("/home");
     });
   }
@@ -22,31 +21,39 @@ function Navbar() {
     signOut(auth).then(() => {
       console.log("Logged out");
       router.push("/");
-      setState(false);
     });
   }
+  auth.onAuthStateChanged((user) => {
+    if (user) setState(true);
+    else setState(false);
+  });
   return (
     <>
       <div className="bg-red-500 font-sans text-white text-2xl flex p-4 space-x-4">
         <div className="flex justify-around space-x-4 w-full">
-        <Link href={state ? "/home" : "/"} passHref>
-          <button>Home</button>
-        </Link>
-          <Modal name={"About"} />
+          <Link href={state ? "/home" : "/"} passHref>
+            <button>Home</button>
+          </Link>
+          <Modal
+            name={"About"}
+            description="This was created to help noobs in webd to get started and
+                    test their concepts out in webd."
+          />
+          <Modal name={"Help"} credits={true} />
           <div className="grow" />
-            <div>
-              {state && (
-                <input
-                  type="url"
-                  value={url}
-                  className="text-black px-2 py-1 rounded"
-                  onChange={(e) => {
-                    setUrl(e.target.value);
-                  }}
-                  placeholder="Your server URL"
-                />
-              )}
-            </div>
+          <div>
+            {state && (
+              <input
+                type="url"
+                value={url}
+                className="text-black px-2 py-1 rounded"
+                onChange={(e) => {
+                  setUrl(e.target.value);
+                }}
+                placeholder="Your server URL"
+              />
+            )}
+          </div>
           {!state && (
             <button
               onClick={() => {

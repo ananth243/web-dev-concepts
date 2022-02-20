@@ -1,7 +1,31 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
+import { auth } from "../config/Firebase";
+import { send } from "@emailjs/browser";
 
-export default function Modal({ name, description }) {
-  const [showModal, setShowModal] = React.useState(false);
+export default function Modal({ name, description, credits = false }) {
+  const [issue, setIssue] = useState("");
+  const [message, setMessage] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  async function submitForm() {
+    try {
+      const templateParams = {
+        name: auth.currentUser.displayName,
+        email: auth.currentUser.email,
+        message: `WEBD-BITS: ` + issue,
+      };
+      await send(
+        process.env.NEXT_PUBLIC_SERVICE_ID,
+        process.env.NEXT_PUBLIC_TEMPLATE_ID,
+        templateParams,
+        process.env.NEXT_PUBLIC_USER_ID
+      );
+      setIssue("");
+      setMessage(true);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <>
       <button type="button" onClick={() => setShowModal(true)}>
@@ -25,11 +49,33 @@ export default function Modal({ name, description }) {
                 </div>
                 <div className="relative p-6 flex-auto">
                   <p className="my-4 text-blueGray-500 text-lg leading-relaxed">
-                    This was created to help noobs in webd to get started and
-                    test their concepts out in webd.{" "}
+                    {description}
+                    {credits && (
+                      <form>
+                        Describe your issue in brief and we&apos;ll have someone
+                        get back to you
+                        <label htmlFor="issue">Issue</label>
+                        <textarea
+                          name="issue"
+                          value={issue}
+                          onChange={(e) => setIssue(e.target.value)}
+                        ></textarea>
+                      </form>
+                    )}
                   </p>
                 </div>
                 <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+                  {!message && (
+                    <button
+                      onClick={() => {
+                        submitForm();
+                      }}
+                      className="text-green-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    >
+                      Submit Form
+                    </button>
+                  )}
+                  {message && <h3 className="text-green-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">Message sent!</h3>}
                   <button
                     className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"

@@ -1,11 +1,19 @@
 import Navbar from "../../components/Navbar";
 import { get } from "axios";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import UrlContext from "../../Providers/UrlContext";
-import validateUrl from "../../components/validateUrl";
+import AuthContext from "../../Providers/AuthContext";
+import { useRouter } from "next/router";
 
 export default function Cors() {
   const { url } = useContext(UrlContext);
+  const { state } = useContext(AuthContext);
+  const router = useRouter();
+  useEffect(() => {
+    if (!state) {
+      router.push("/");
+    }
+  }, [state, router]);
   const [message, setMessage] = useState({
     status: null,
     message: null,

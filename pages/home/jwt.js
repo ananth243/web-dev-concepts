@@ -1,10 +1,19 @@
 import axios from "axios";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 import UrlContext from "../../Providers/UrlContext";
+import AuthContext from "../../Providers/AuthContext";
+import { useRouter } from "next/router";
 
 function Jwt() {
   const { url } = useContext(UrlContext);
+  const { state } = useContext(AuthContext);
+  const router = useRouter();
+  useEffect(() => {
+    if (!state) {
+      router.push("/");
+    }
+  }, [state, router]);
   async function execute() {
     try {
       body = JSON.stringify({

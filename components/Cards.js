@@ -2,7 +2,7 @@ import React from "react";
 import styles from "../styles/Card.module.css";
 import Link from "next/link";
 
-function Cards({ link, name, description }) {
+function Cards({ id, link, name, description }) {
   return (
     <div className={styles.container}>
       <Link href={link} passHref>
