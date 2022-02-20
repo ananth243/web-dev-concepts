@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/Navbar";
 
 function stream() {
   return (
@@ -17,7 +17,9 @@ function stream() {
         createWriteStream.
       </p>
       <p>
-          When you are ready the server will send a get request to /stream. If you see a download that means the request was a success. Else there was some failure
+        When you are ready the server will send a get request to /stream. If you
+        see a download that means the request was a success. Else there was some
+        failure
       </p>
     </>
   );
