@@ -4,6 +4,7 @@ import { useContext, useState, useEffect } from "react";
 import UrlContext from "../../Providers/UrlContext";
 import AuthContext from "../../Providers/AuthContext";
 import { useRouter } from "next/router";
+import Page from "../../components/Page";
 
 export default function Cors() {
   const { url } = useContext(UrlContext);
@@ -13,7 +14,7 @@ export default function Cors() {
     if (!state) {
       router.push("/");
     }
-  }, [state, router]);
+  }, [router, state]);
   const [message, setMessage] = useState({
     status: null,
     message: null,
@@ -36,38 +37,48 @@ export default function Cors() {
   return (
     <>
       <Navbar />
-      <div>
-        <h1>CORS</h1>
-        <p>
-          Cross Origins Resources Sharing allows transfer of data between
-          different domains. This is important to setup if you want to attempt
-          the further questions
-        </p>
-        <p>
-          For security reasons, browsers such as Chrome, Firefox restrict
-          cross-origin HTTP requests initiated from scripts.
-        </p>
-        <p>
-          In order for this to work, you need to enable CORS in your server.
-          This is done by adding the following headers to your response:
-          <br />
-          <br />
-          <code>
-            Access Control Allow Origin: * Access Control Allow Headers:
-            Content-Type, X-Requested-With Access Control Allow Methods: GET,
-            POST, PUT, DELETE, OPTIONS
-          </code>
-        </p>
-        <p>
-          This will allow the browser to make requests to your server. As soon
-          as you click submit, the website will send a GET request to
-          &apos;/&apos; on your server. It should respond with &quot;Hello
-          World&quot; indicating a success
-        </p>
-        <button onClick={() => execute()}>Execute</button>
-        {message.status && <h1 className="text-white">{message.message}</h1>}
-        {!message.status && <h1 className="text-red-600">{message.message}</h1>}
-      </div>
+      <Page
+        title={"Cors"}
+        description={description}
+        execute={execute}
+        message={message}
+        problem={problem}
+      />
     </>
+  );
+}
+
+function description() {
+  return (
+    <>
+      Cross Origins Resources Sharing allows transfer of data between different
+      domains. This is important to setup if you want to attempt the further
+      questions For security reasons, browsers such as Chrome, Firefox restrict
+      cross-origin HTTP requests initiated from scripts.
+      <p>
+        In order for this to work, you need to enable CORS in your server. This
+        is done by adding the following headers to your response:
+        <br />
+        <br />
+        <code>
+          Access Control Allow Origin: * Access Control Allow Headers:
+          Content-Type, X-Requested-With Access Control Allow Methods: GET,
+          POST, PUT, DELETE, OPTIONS
+        </code>
+        <br />
+        This will allow the browser to make requests to your server.
+        <br />
+      </p>
+    </>
+  );
+}
+
+function problem() {
+  return (
+    <p>
+      As soon as you click submit, the website will send a GET request to
+      &apos;/&apos; on your server. It should respond with &quot;Hello
+      World&quot; indicating a success
+    </p>
   );
 }

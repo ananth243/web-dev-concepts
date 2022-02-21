@@ -107,7 +107,7 @@ export default function Home() {
     },
     {
       id: 13,
-      name: "Streams (Node Streams)",
+      name: "Streams",
       link: "/home/stream",
       description:
         "Streams are a way of handling data as it is being sent from the server to the client.",

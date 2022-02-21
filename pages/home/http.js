@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useContext, useState, useEffect } from "react";
 import Navbar from "../../components/Navbar";
+import Page from "../../components/Page";
 import UrlContext from "../../Providers/UrlContext";
 import AuthContext from "../../Providers/AuthContext";
 import { useRouter } from "next/router";
@@ -55,6 +56,20 @@ function Http() {
   return (
     <>
       <Navbar />
+      <Page
+        message={message}
+        description={description}
+        problem={problem}
+        title="Http"
+        execute= {execute}
+      />
+    </>
+  );
+}
+
+function description() {
+  return (
+    <>
       <p>
         The HTTP request is sent to the server and the response is received.
         There are numerous http requests such as GET, POST, PUT, DELETE, HEAD,
@@ -71,27 +86,23 @@ function Http() {
         want to delete data on the server it&apos;s not neccessary to use a
         DELETE request.
       </p>
-      <p>
-        This server will send a GET, POST and DELETE request to /http and it
-        expects a response of 200, 201, and 204 for each respectively with a
-        json response of{" "}
-        <code>
-          {JSON.stringify({
-            status: "The respective status code",
-            message: "Success",
-          })}
-        </code>
-      </p>
-      <button
-        onClick={() => {
-          execute();
-        }}
-      >
-        Execute
-      </button>
-      {message.status && <h1 className="text-green-600">{message.message}</h1>}
-      {!message.status && <h1 className="text-red-600">{message.message}</h1>}
     </>
+  );
+}
+
+function problem() {
+  return (
+    <p>
+      This server will send a GET, POST and DELETE request to /http and it
+      expects a response of 200, 201, and 204 for each respectively with a json
+      response of{" "}
+      <code>
+        {JSON.stringify({
+          status: "The respective status code",
+          message: "Success",
+        })}
+      </code>
+    </p>
   );
 }
 

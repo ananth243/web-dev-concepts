@@ -65,7 +65,7 @@ export default function Modal({ name, description, credits = false }) {
                   </p>
                 </div>
                 <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
-                  {!message && (
+                  {!message && credits && (
                     <button
                       onClick={() => {
                         submitForm();
