@@ -20,9 +20,9 @@ export default function Cors() {
     message: null,
   });
   async function execute() {
-    if (url && url !== window.location.origin) {
+    if (!isNaN(url) && url !== "") {
       try {
-        const response = await get(url + "/cors");
+        const response = await get(`http://localhost:${url}` + "/cors");
         if (response.status === 200 && response.data === "Hello World") {
           setMessage({ success: true, message: "Success!" });
           return true;
@@ -31,12 +31,15 @@ export default function Cors() {
         setMessage({ success: false, message: error.message });
       }
     } else {
-      setMessage({ status: false, message: "Please enter a valid url" });
+      setMessage({
+        status: false,
+        message: "Please enter a valid port number",
+      });
     }
   }
   return (
     <>
-      <Navbar />
+      <Navbar title="Cors" />
       <Page
         title={"Cors"}
         description={description}
@@ -61,8 +64,8 @@ function description() {
         <br />
         <br />
         <code>
-          Access Control Allow Origin: * Access Control Allow Headers:
-          Content-Type, X-Requested-With Access Control Allow Methods: GET,
+          Access-Control-Allow-Origin: * Access-Control-Allow-Headers:
+          Content-Type, X-Requested-With-Access-Control Allow Methods: GET,
           POST, PUT, DELETE, OPTIONS
         </code>
         <br />

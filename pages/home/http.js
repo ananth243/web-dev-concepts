@@ -5,6 +5,7 @@ import Page from "../../components/Page";
 import UrlContext from "../../Providers/UrlContext";
 import AuthContext from "../../Providers/AuthContext";
 import { useRouter } from "next/router";
+import Json from "../../components/Object";
 
 function Http() {
   const { state } = useContext(AuthContext);
@@ -20,10 +21,12 @@ function Http() {
     message: null,
   });
   async function execute() {
-    if (url && url !== window.location.origin) {
+    if (!isNaN(url) && url !== "") {
       try {
-        const res = await axios.get(url + "http");
-        const res2 = await axios.post(url + "http", { message: "Hey there!" });
+        const res = await axios.get(`http://localhost:${url}` + "http");
+        const res2 = await axios.post(`http://localhost:${url}` + "http", {
+          message: "Hey there!",
+        });
         const res3 = await axios.delete(url + "http");
         if (
           res.status === 200 &&
@@ -49,19 +52,19 @@ function Http() {
     } else {
       setMessage({
         status: false,
-        message: "Please enter a valid url",
+        message: "Please enter a valid port number",
       });
     }
   }
   return (
     <>
-      <Navbar />
+      <Navbar title="Http Requests" />
       <Page
         message={message}
         description={description}
         problem={problem}
-        title="Http"
-        execute= {execute}
+        title="Http Requests"
+        execute={execute}
       />
     </>
   );
@@ -82,7 +85,7 @@ function description() {
         request that ends up deleting data. In essence thats a delete request.
       </p>
       <p>
-        So these are just general conventions followed in the web. SO if you
+        So these are just general conventions followed in the web. So if you
         want to delete data on the server it&apos;s not neccessary to use a
         DELETE request.
       </p>
@@ -96,12 +99,13 @@ function problem() {
       This server will send a GET, POST and DELETE request to /http and it
       expects a response of 200, 201, and 204 for each respectively with a json
       response of{" "}
-      <code>
-        {JSON.stringify({
+      <Json
+        object={{
           status: "The respective status code",
           message: "Success",
-        })}
-      </code>
+        }}
+      />
+      <br />
     </p>
   );
 }

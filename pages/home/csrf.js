@@ -13,7 +13,7 @@ function Csrf() {
   }, [state, router]);
   return (
     <>
-      <Navbar />
+      <Navbar  title="CSRF Tokens"/>
       <div>csrf</div>
     </>
   );

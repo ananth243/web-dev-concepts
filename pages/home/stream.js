@@ -17,9 +17,12 @@ function Stream() {
     }
   }, [state, router]);
   async function execute() {
-    if (url && url !== window.location.origin) {
+    if (!isNaN(url) && url !== "") {
       try {
-        const response = await post(url + "/stream", body);
+        const response = await post(
+          `http://localhost:${url}` + "/stream",
+          body
+        );
         if (response) {
           setMessage({ status: true, message: "Success" });
           return true;
@@ -30,14 +33,17 @@ function Stream() {
       } catch (error) {
         setMessage({ status: false, message: error.message });
       }
-    } else setMessage({ status: false, message: "Please enter a valid url" });
+    } else
+      setMessage({
+        status: false,
+        message: "Please enter a valid port number",
+      });
   }
   return (
     <>
-      <Navbar />
+      <Navbar title="Streams" />
       <Page
         execute={execute}
-        title={"Streams"}
         message={message}
         description={description}
         problem={problem}
@@ -57,7 +63,24 @@ function description() {
       <p>
         In the core nodejs module fs we are offered with a few methods that are
         used to read and write files such as createReadStream and
-        createWriteStream.
+        createWriteStream. An example of this is present in{" "}
+        <code>/api/stream</code>
+      </p>
+      <p>
+        For example by clicking this{" "}
+        <a href="/stream.txt" className="text-blue-200" download>
+          link
+        </a>
+        &nbsp;it will trigger a download
+      </p>
+      <p>
+        Now why are streams important. Imagine you had to transfer 200 gb of
+        data across the internet through a server that has a hypothetical ram of
+        20 GB. See the issue?
+      </p>
+      <p>
+        You would need to break the 200 gb into 20 gb chunks and send them to
+        the server which is what streams do.
       </p>
     </>
   );

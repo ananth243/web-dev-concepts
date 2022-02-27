@@ -3,6 +3,24 @@ import React, { useState } from "react";
 import { auth } from "../config/Firebase";
 import { send } from "@emailjs/browser";
 
+function Description() {
+  return (
+    <div>
+      This was created to help noobs in webd to get started and test their
+      concepts out in webd. Thanks to{" "}
+      <a
+        href="https://github.com/riskycase"
+        className="text-blue-400"
+        target="_blank"
+        rel="noreferrer"
+      >
+        riskycase
+      </a>
+      &nbsp;for helping me out with the frontend
+    </div>
+  );
+}
+
 export default function Modal({ name, description, credits = false }) {
   const [issue, setIssue] = useState("");
   const [message, setMessage] = useState(false);
@@ -49,7 +67,7 @@ export default function Modal({ name, description, credits = false }) {
                 </div>
                 <div className="relative p-6 flex-auto">
                   <p className="my-4 text-blueGray-500 text-lg leading-relaxed">
-                    {description}
+                    {credits ? description : <Description />}
                     {credits && (
                       <form>
                         Describe your issue in brief and we&apos;ll have someone
@@ -75,7 +93,11 @@ export default function Modal({ name, description, credits = false }) {
                       Submit Form
                     </button>
                   )}
-                  {message && <h3 className="text-green-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">Message sent!</h3>}
+                  {message && (
+                    <h3 className="text-green-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                      Message sent!
+                    </h3>
+                  )}
                   <button
                     className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"

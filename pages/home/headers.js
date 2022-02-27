@@ -13,7 +13,7 @@ function Headers() {
   }, [state, router]);
   return (
     <>
-      <Navbar />
+      <Navbar  title="Headers"/>
       <div>headers</div>
     </>
   );

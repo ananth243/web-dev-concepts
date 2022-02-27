@@ -13,7 +13,7 @@ function Auth() {
   }, [state, router]);
   return (
     <>
-      <Navbar />
+      <Navbar  title="Authorization"/>
       <div>auth</div>
     </>
   );

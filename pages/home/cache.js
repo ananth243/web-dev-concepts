@@ -17,7 +17,7 @@ function Cache() {
   async function cache() {
     let intial = new Date();
     try {
-      await post(url, {
+      await post(`http://localhost:${url}`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -50,7 +50,7 @@ function Cache() {
   }
   return (
     <>
-      <Navbar />
+      <Navbar title='Caching' />
       <div>cache</div>
       <button
         onClick={() => {

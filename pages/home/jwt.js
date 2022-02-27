@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
+import Json from "../../components/Object";
 import Navbar from "../../components/Navbar";
 import UrlContext from "../../Providers/UrlContext";
 import Page from "../../components/Page";
@@ -20,13 +21,13 @@ function Jwt() {
     }
   }, [state, router]);
   async function execute() {
-    if (url && url !== window.location.origin) {
+    if (!isNaN(url) && url !== "") {
       try {
         body = JSON.stringify({
           name: "John Doe",
           secretPassword: "12345",
         });
-        const response = await axios.post(url, body);
+        const response = await axios.post(`http://localhost:${url}`, body);
         if (response.status === 200 && response.data === "Hello World") {
           setMessage({ success: true, message: "Success!" });
           return true;
@@ -34,14 +35,18 @@ function Jwt() {
       } catch (error) {
         setMessage({ status: false, message: error.message });
       }
-    } else setMessage({ status: false, message: "Please enter a valid url" });
+    } else
+      setMessage({
+        status: false,
+        message: "Please enter a valid port number",
+      });
   }
 
   return (
     <>
-      <Navbar />
+      <Navbar title="JWT" />
       <Page
-        title={"JWT"}
+        title="JWT"
         description={description}
         problem={problem}
         execute={execute}
@@ -59,12 +64,16 @@ function description() {
         the client side. They are very hard to tamper with without knowing the
         secret that is used to encrypt them. If you have 2 servers using the
         same user info the same jwt can be used to communicate between them if
-        they are both using the same secret. For more info head to the link
-        below.
+        they are both using the same secret. For more info head to this
+        <a
+          target="_blank"
+          rel="noreferrer"
+          href="https://jwt.io"
+          className="text-blue-800"
+        >
+          &nbsp;link.
+        </a>
       </div>
-      <a target="_blank" rel="noreferrer" href="https://jwt.io">
-        JWT
-      </a>
     </>
   );
 }
@@ -74,18 +83,22 @@ function problem() {
     <p>
       There will be a POST request sent to the server with the following data:
       <br />
-      {JSON.stringify({
-        name: "John Doe",
-        secretPassword: "12345",
-      })}
+      <Json
+        object={{
+          name: "John Doe",
+          secretPassword: "12345",
+        }}
+      />
       <br />
       The server will return a JWT. The payload of the jwt will be the
       user&apos;s data as follows:
       <br />
-      {JSON.stringify({
-        name: "John Doe",
-        timestamp: "Date of creation",
-      })}
+      <Json
+        object={{
+          name: "John Doe",
+          timestamp: "Date of creation",
+        }}
+      />
       After this you should also send a GET request to &apos;/api/jwt&apos;. The
       request should include the token in a header called token.
       <br />

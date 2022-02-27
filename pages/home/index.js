@@ -12,7 +12,7 @@ export default function Home() {
     if (!state) {
       router.push("/");
     }
-  }, [state, router]);
+  }, [router, state]);
   const [options, setOptions] = useState([
     {
       id: 0,
@@ -49,13 +49,13 @@ export default function Home() {
       description:
         "JWT's are the similar to cookies. Only thing is that they store user's info on the client side and not the server.",
     },
-    {
-      id: 5,
-      name: "Authorization",
-      link: "/home/auth",
-      description:
-        "Authorization is the process of authenticating a user. It is a way of identifying a user.",
-    },
+    // {
+    //   id: 5,
+    //   name: "Authorization",
+    //   link: "/home/auth",
+    //   description:
+    //     "Authorization is the process of authenticating a user. It is a way of identifying a user.",
+    // },
     {
       id: 6,
       name: "CSRF Tokens",

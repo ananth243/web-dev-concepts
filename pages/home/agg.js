@@ -7,6 +7,7 @@ import AuthContext from "../../Providers/AuthContext";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../config/Firebase";
 import { useRouter } from "next/router";
+import Json from "../../components/Object";
 
 function Agg() {
   const { url } = useContext(UrlContext);
@@ -22,7 +23,7 @@ function Agg() {
     }
   }, [state, router]);
   async function execute() {
-    if (url && url !== window.location.origin) {
+    if (!isNaN(url) && url !== "") {
       try {
         const body = await getDocs(collection(db, "aggregate"));
         const expectation = [
@@ -42,7 +43,10 @@ function Agg() {
           { department: "Product Management", average: 48.81818181818182 },
           { department: "Engineering", average: 29.555555555555557 },
         ];
-        const response = await post(url + "/aggregate", body);
+        const response = await post(
+          `http://localhost:${url}` + "/aggregate",
+          body
+        );
         if (response === expectation) {
           setMessage({ status: true, message: "Success" });
           return true;
@@ -53,11 +57,15 @@ function Agg() {
       } catch (error) {
         setMessage({ status: false, message: error.message });
       }
-    } else setMessage({ status: false, message: "Please enter a valid url" });
+    } else
+      setMessage({
+        status: false,
+        message: "Please enter a valid port number",
+      });
   }
   return (
     <>
-      <Navbar />
+      <Navbar title="Aggregation" />
       <Page
         title={"Aggregation"}
         description={description}
@@ -87,6 +95,10 @@ function description() {
         SQL, tables) and it becomes very efficient and beneficial in terms of
         spped to the application.
       </p>
+      <p className="text-red-600">
+        Note: If you have already saved the data and are trying this operation
+        again, skip the part of saving it again otherwise it will throw an error
+      </p>
     </>
   );
 }
@@ -95,26 +107,26 @@ function problem() {
   return (
     <>
       <p>
-        There will be a POST request sent to the server with the following data:
-        <br />
-        <code>
-          {JSON.stringify({
+        There will be a POST request sent to the server with data of the
+        following form:
+        <Json
+          object={{
             department: "Accounting",
             name: "John Doe",
             marks: 2,
-          })}
-        </code>
+          }}
+        />
       </p>
       <p>
         Save the data in a database of your choice and then perform the
         aggregation where the response should have data of the form:
         <br />
-        <code>
-          {JSON.stringify({
+        <Json
+          object={{
             department: "Accounting",
             average: "Average mark of the department",
-          })}
-        </code>
+          }}
+        />
       </p>
     </>
   );
