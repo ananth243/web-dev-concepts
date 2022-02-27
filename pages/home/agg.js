@@ -80,7 +80,7 @@ function Agg() {
 function description() {
   return (
     <>
-      <p>
+      <p className="">
         Aggregation pipelines are used to aggregate data from multiple
         collections. Imagine a database full of records of subjects and
         student&apos;s marks in it. Now you are supposed to find the average
