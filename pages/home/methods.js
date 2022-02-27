@@ -66,7 +66,7 @@ function Methods() {
 function description() {
   return (
     <>
-      <p>
+      <p className="text-xl">
         There are various ways you can transmit data to the server. You can use
         headers, the body of a post request but what about an id? What if you
         also needed to render specific pages for specific id&apos;s also?
@@ -77,7 +77,7 @@ function description() {
 
 function problem() {
   return (
-    <p>
+    <p className="text-xl">
       So the client is going to make the following requests:
       <br />
       <ol>

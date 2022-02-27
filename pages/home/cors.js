@@ -54,23 +54,16 @@ export default function Cors() {
 function description() {
   return (
     <>
-      Cross Origins Resources Sharing allows transfer of data between different
-      domains. This is important to setup if you want to attempt the further
-      questions For security reasons, browsers such as Chrome, Firefox restrict
-      cross-origin HTTP requests initiated from scripts.
-      <p>
-        In order for this to work, you need to enable CORS in your server. This
-        is done by adding the following headers to your response:
+      <p className="text-xl">
+        Cross Origins Resources Sharing allows transfer of data between
+        different domains. This is important to setup if you want to attempt the
+        further questions For security reasons, browsers such as Chrome, Firefox
+        restrict cross-origin HTTP requests initiated from scripts. In order for
+        this to work, you need to enable CORS in your server for this domain.
         <br />
+        Hint:
         <br />
-        <code>
-          Access-Control-Allow-Origin: * Access-Control-Allow-Headers:
-          Content-Type, X-Requested-With-Access-Control Allow Methods: GET,
-          POST, PUT, DELETE, OPTIONS
-        </code>
-        <br />
-        This will allow the browser to make requests to your server.
-        <br />
+        <code>Access-Control-Allow-Origin</code>
       </p>
     </>
   );
@@ -78,10 +71,13 @@ function description() {
 
 function problem() {
   return (
-    <p>
-      As soon as you click submit, the website will send a GET request to
-      &apos;/&apos; on your server. It should respond with &quot;Hello
-      World&quot; indicating a success
-    </p>
+    <>
+      <p className="text-xl">
+        As soon as you click submit, the website will send a GET request to
+        &apos;/&apos; on your server. It should respond with &quot;Hello
+        World&quot; indicating a success
+      </p>
+      <br />
+    </>
   );
 }

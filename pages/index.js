@@ -15,20 +15,16 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <div className="p-10">
-        <p className="font-mono text-xl">
+      <div className="p-10 flex justify-center content-center">
+        <p className="font-mono text-4xl">
           <Typewriter
             onInit={(typewriter) => {
               typewriter
-                .typeString("Welcome")
+                .typeString("Welcome.")
                 .pauseFor(1000)
                 .deleteAll()
                 .typeString("This site tests out your WebD knowledge")
                 .start()
-                .pauseFor(1000)
-                .deleteAll()
-                .typeString("Please Enjoy!")
-                .start();
             }}
           />
         </p>

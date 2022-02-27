@@ -13,7 +13,7 @@ export default function Home() {
       router.push("/");
     }
   }, [router, state]);
-  const [options, setOptions] = useState([
+  const options = [
     {
       id: 0,
       name: "CORS",
@@ -56,20 +56,20 @@ export default function Home() {
     //   description:
     //     "Authorization is the process of authenticating a user. It is a way of identifying a user.",
     // },
-    {
-      id: 6,
-      name: "CSRF Tokens",
-      link: "/home/csrf",
-      description:
-        "CSRF is a way of preventing cross site request forgery. It is a way of protecting the user's data submitted to the server.",
-    },
-    {
-      id: 7,
-      name: "Web Sockets",
-      link: "/home/ws",
-      description:
-        "Web sockets are a way of communicating with a server without having to use a page refresh. It is a way of communicating with a server without having to use a page refresh.",
-    },
+    // {
+    //   id: 6,
+    //   name: "CSRF Tokens",
+    //   link: "/home/csrf",
+    //   description:
+    //     "CSRF is a way of preventing cross site request forgery. It is a way of protecting the user's data submitted to the server.",
+    // },
+    // {
+    //   id: 7,
+    //   name: "Web Sockets",
+    //   link: "/home/ws",
+    //   description:
+    //     "Web sockets are a way of communicating with a server without having to use a page refresh. It is a way of communicating with a server without having to use a page refresh.",
+    // },
     {
       id: 8,
       name: "Rate Limiting",
@@ -84,13 +84,13 @@ export default function Home() {
       description:
         "Aggregations are a way of combining data from multiple sources.",
     },
-    {
-      id: 10,
-      name: "SQL Injections",
-      link: "/home/sql",
-      description:
-        "SQL Injections are a way of injecting SQL queries into a database. This is prehaps one of the most dangerous attacks on a website.",
-    },
+    // {
+    //   id: 10,
+    //   name: "SQL Injections",
+    //   link: "/home/sql",
+    //   description:
+    //     "SQL Injections are a way of injecting SQL queries into a database. This is prehaps one of the most dangerous attacks on a website.",
+    // },
     {
       id: 11,
       name: "XSS",
@@ -112,12 +112,11 @@ export default function Home() {
       description:
         "Streams are a way of handling data as it is being sent from the server to the client.",
     },
-  ]);
+  ];
   return (
     <>
       <Navbar />
-      <div className="p-10">
-      </div>
+      <div className="p-10"></div>
       <div className="grid gap-8 p-4 grid-cols-autofit place-items-stretch grid-rows-1 my-5">
         {options &&
           options.map((card) => (

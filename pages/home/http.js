@@ -73,18 +73,18 @@ function Http() {
 function description() {
   return (
     <>
-      <p>
+      <p className="text-xl">
         The HTTP request is sent to the server and the response is received.
         There are numerous http requests such as GET, POST, PUT, DELETE, HEAD,
         PATCH, TRACE, CONNECT, and so on. But most of the time we use GET, POST,
         PUT, DELETE.
       </p>
-      <p>
+      <p className="text-xl">
         It would be intuitive to think that these requests can&apos;t be
         modified but that is not true. Example: I can actually make a POST
         request that ends up deleting data. In essence thats a delete request.
       </p>
-      <p>
+      <p className="text-xl">
         So these are just general conventions followed in the web. So if you
         want to delete data on the server it&apos;s not neccessary to use a
         DELETE request.
@@ -95,7 +95,7 @@ function description() {
 
 function problem() {
   return (
-    <p>
+    <p className="text-xl">
       This server will send a GET, POST and DELETE request to /http and it
       expects a response of 200, 201, and 204 for each respectively with a json
       response of{" "}
