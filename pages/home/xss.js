@@ -26,9 +26,21 @@ function description() {
       <p className="text-xl">
         There is a way of executing javascript in the browser. This is called
         Cross Site Scripting. Intuivitively one can enter this as an input to a
-        form: {'<script>alert("I hacked your app")</script>'}. If you stored
-        this data into your application and displayed it when you fetched, you
-        have essentially hacked the application.
+        form:
+        <br />
+        <br />
+        <code>
+          {"<script>"}
+          <br />
+          &emsp;{'alert("I hacked your app")'}
+          <br />
+          {"</script>"}
+        </code>{" "}
+        <br />
+        <br />
+         If this data was stored in an application and displayed it when
+        you fetched, you have essentially hacked the application as an alert box
+        will pop up.
       </p>
       <p className="text-xl">
         Luckily various packages have been developed to prevent this. For
@@ -45,10 +57,10 @@ function description() {
       </p>
       <p className="text-xl">
         Now you might be wondering as to whether this application uses it. The
-        answer is no. If you have a knowledge of React, then you can visit to
+        answer is no. If you have knowledge of React, then you can visit to
         this{" "}
         <a
-          href="https://www.stackhawk.com/blog/react-xss-guide-examples-and-prevention/"
+          href="https://www.stackhawk.com/blog/react-xss-guide-examples-and-prevention/#is-react-xss-foolproof"
           target="_blank"
           rel="noreferrer"
           className="text-blue-400"

@@ -59,7 +59,7 @@ function Jwt() {
 function description() {
   return (
     <>
-      <div>
+      <div className="text-xl">
         Json Web Tokens are an industry standard for storing user&apos;s data on
         the client side. They are very hard to tamper with without knowing the
         secret that is used to encrypt them. If you have 2 servers using the
@@ -69,7 +69,7 @@ function description() {
           target="_blank"
           rel="noreferrer"
           href="https://jwt.io"
-          className="text-blue-800"
+          className="text-blue-400"
         >
           &nbsp;link.
         </a>
@@ -80,7 +80,7 @@ function description() {
 
 function problem() {
   return (
-    <p>
+    <p className="text-xl">
       There will be a POST request sent to the server with the following data:
       <br />
       <Json

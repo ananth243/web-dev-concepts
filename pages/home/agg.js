@@ -80,7 +80,7 @@ function Agg() {
 function description() {
   return (
     <>
-      <p className="">
+      <p className="text-xl">
         Aggregation pipelines are used to aggregate data from multiple
         collections. Imagine a database full of records of subjects and
         student&apos;s marks in it. Now you are supposed to find the average
@@ -89,13 +89,13 @@ function description() {
         finally divide by total number of students and you have to do this for
         each subject. This is a very inefficient way of doing it.
       </p>
-      <p>
+      <p className="text-xl">
         So aggregation pipelines give you the flexibility to cretae, modify and
         delete fields and group data from different collections (in mongodb, in
         SQL, tables) and it becomes very efficient and beneficial in terms of
         spped to the application.
       </p>
-      <p className="text-red-600">
+      <p className="text-red-600 text-xl">
         Note: If you have already saved the data and are trying this operation
         again, skip the part of saving it again otherwise it will throw an error
       </p>
@@ -106,7 +106,7 @@ function description() {
 function problem() {
   return (
     <>
-      <p>
+      <p className="text-xl">
         There will be a POST request sent to the server with data of the
         following form:
         <Json
@@ -117,7 +117,7 @@ function problem() {
           }}
         />
       </p>
-      <p>
+      <p className="text-xl">
         Save the data in a database of your choice and then perform the
         aggregation where the response should have data of the form:
         <br />

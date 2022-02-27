@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import Json from "../../components/Object";
 import UrlContext from "../../Providers/UrlContext";
 import Page from "../../components/Page";
+import axios from "axios";
 
 function Headers() {
   const { state } = useContext(AuthContext);
@@ -22,6 +23,25 @@ function Headers() {
   async function execute() {
     if (!isNaN(url) && url !== "") {
       try {
+        const cookie = Math.floor(Math.random() * 1000000);
+        document.cookie = `username=${cookie}`;
+        const token = Math.floor(Math.random() * 1000000);
+        const response = await axios.get(`http://localhost:${url}/headers`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        if (response.data.cookie === cookie && response.data.token == token) {
+          setMessage({
+            status: true,
+            message: "Success",
+          });
+        } else {
+          setMessage({
+            status: false,
+            message: "Invalid fields sent",
+          });
+        }
       } catch (e) {
         setMessage({
           status: false,
@@ -73,8 +93,8 @@ function problem() {
       So the client is going to make the following request:
       <br />
       Get request to:
-      <code>&apos;/headers&apos;</code> along with the cookie &apos;token&apos;
-      and authorization header
+      <code>&apos;/headers&apos;</code> along with the cookie, &apos;token&apos;
+      in the and authorization header
       <br />
       and it expects a json response of{" "}
       <Json

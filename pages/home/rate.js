@@ -74,14 +74,14 @@ function Rate() {
 function description() {
   return (
     <>
-      <p>
+      <p className="text-xl">
         Rate limiting is a way of preventing brute force attacks. Imagine a
         group of 3000 people making requests to a server at the ame time. If the
         server doesn&apos;t have multiple intances where it can distibute the
         load, these requests could crash the server or more dangerous, reveal
         sensitive data.
       </p>
-      <p>
+      <p className="text-xl">
         To fix this most servers track your ip address when making requests, it
         will check if you are within the quota of requests (per hour or day). If
         it exceeds that threshold the server will not send response for some
@@ -94,13 +94,13 @@ function description() {
 function problem() {
   return (
     <>
-      <p>
+      <p className="text-xl">
         This server will send a series of requests to &apos;/rate&apos;. After 3
         requests within 4 seconds, your server should send a 429 response with a
         message as follows:
         <Json object={{ status: 429, error: "Too many requests" }} />
       </p>
-      <p>
+      <p className="text-xl">
         After 4 seconds the server should send a 200 response with a message as
         follows:
         <Json

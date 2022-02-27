@@ -3,8 +3,10 @@ import Navbar from "../../components/Navbar";
 import AuthContext from "../../Providers/AuthContext";
 import { useRouter } from "next/router";
 import Page from "../../components/Page";
+import UrlContext from "../../Providers/UrlContext";
 
 function Stream() {
+  const {url} = useContext(UrlContext);
   const { state } = useContext(AuthContext);
   const [message, setMessage] = useState({
     status: false,
@@ -52,25 +54,25 @@ function Stream() {
 function description() {
   return (
     <>
-      <p>
+      <p className="text-xl">
         Streams are a way of handlling data. Streams in node.js are most widely
         used for file reading and transmissions that are very helpful in sending
         or creating files such as images and pdfs
       </p>
-      <p>
+      <p className="text-xl">
         In the core nodejs module fs we are offered with a few methods that are
         used to read and write files such as createReadStream and
         createWriteStream. An example of this is present in{" "}
         <code>/api/stream</code>
       </p>
-      <p>
+      <p className="text-xl">
         For example by clicking this{" "}
         <a download href="/api/stream" className="text-blue-400">
           link
         </a>
         &nbsp;it will trigger a download
       </p>
-      <p>
+      <p className="text-xl">
         Now why are streams important. Imagine you had to transfer 200 gb of
         data across the internet through a server that has a hypothetical ram of
         20 GB. See the issue? You would need to break the 200 gb into 20 gb
@@ -83,7 +85,7 @@ function description() {
 function problem() {
   return (
     <>
-      <p>
+      <p className="text-xl">
         Create any file you want to. Can be a pdf or a txt file also. When you
         are ready the server will send a get request to /stream. You have to
         read the file contents and send the contents as the response.
