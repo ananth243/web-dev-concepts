@@ -19,10 +19,7 @@ function Stream() {
   async function execute() {
     if (!isNaN(url) && url !== "") {
       try {
-        const response = await post(
-          `http://localhost:${url}` + "/stream",
-          body
-        );
+        const response = await get(`http://localhost:${url}` + "/stream", body);
         if (response) {
           setMessage({ status: true, message: "Success" });
           return true;
@@ -68,7 +65,7 @@ function description() {
       </p>
       <p>
         For example by clicking this{" "}
-        <a href="/stream.txt" className="text-blue-200" download>
+        <a download href="/api/stream" className="text-blue-400">
           link
         </a>
         &nbsp;it will trigger a download
@@ -76,11 +73,8 @@ function description() {
       <p>
         Now why are streams important. Imagine you had to transfer 200 gb of
         data across the internet through a server that has a hypothetical ram of
-        20 GB. See the issue?
-      </p>
-      <p>
-        You would need to break the 200 gb into 20 gb chunks and send them to
-        the server which is what streams do.
+        20 GB. See the issue? You would need to break the 200 gb into 20 gb
+        chunks and send them to the server which is what streams do.
       </p>
     </>
   );
@@ -89,12 +83,10 @@ function description() {
 function problem() {
   return (
     <>
-      <p>Create any file you want to. Can be a pdf or a txt file also.</p>
       <p>
-        When you are ready the server will send a get request to /stream. You
-        have to read the file contents and send the contents as the response. If
-        you see a download that means the request was a success. Else there was
-        some failure.
+        Create any file you want to. Can be a pdf or a txt file also. When you
+        are ready the server will send a get request to /stream. You have to
+        read the file contents and send the contents as the response.
       </p>
     </>
   );
