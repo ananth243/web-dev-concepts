@@ -23,23 +23,22 @@ function Rate() {
   async function execute() {
     if (!isNaN(url) && url !== "") {
       try {
-        await get(`http://localhost:${url}`);
-        await get(`http://localhost:${url}`);
-        await get(`http://localhost:${url}`);
-        let response = await get(`http://localhost:${url}`);
+        await get(`http://localhost:${url}/rate`);
+        await get(`http://localhost:${url}/rate`);
+        await get(`http://localhost:${url}/rate`);
+        let response = await get(`http://localhost:${url}/rate`);
         if (response) {
-          setMessage({ status: false, message: "Server recieved a response" });
-          return true;
+          setMessage({
+            status: false,
+            message: `Server recieved a response: ${response.data}`,
+          });
         }
       } catch (error) {
-        if (
-          response.data.error === "Too many requests" &&
-          response.status === 429
-        ) {
+        if (error.message === "Network Error") {
           setTimeout(async () => {
-            const response = await get(`http://localhost:${url}`);
+            const response = await get(`http://localhost:${url}/rate`);
             if (response.data === "Success") {
-              setMessage({ status: false, message: "Succes" });
+              setMessage({ status: true, message: "Succes" });
             } else {
               setMessage({ status: false, message: "Uknown error occured" });
             }
@@ -77,8 +76,8 @@ function description() {
       <p className="text-xl">
         Rate limiting is a way of preventing brute force attacks. Imagine a
         group of 3000 people making requests to a server at the ame time. If the
-        server doesn&apos;t have multiple intances where it can distibute the
-        load, these requests could crash the server or more dangerous, reveal
+        server doesnt have multiple intances where it can distibute the load,
+        these requests could crash the server or more dangerous, reveal
         sensitive data.
       </p>
       <p className="text-xl">
@@ -95,21 +94,26 @@ function problem() {
   return (
     <>
       <p className="text-xl">
-        This server will send a series of requests to &apos;/rate&apos;. After 3
-        requests within 4 seconds, your server should send a 429 response with a
-        message as follows:
-        <Json object={{ status: 429, error: "Too many requests" }} />
+        This server will send a series of requests to /rate. After 3 requests
+        within 4 seconds, your server should send a 429 response with a message
+        as follows:
+        <Json
+          expectation={true}
+          object={{ status: 429, error: "Too many requests" }}
+        />
       </p>
       <p className="text-xl">
         After 4 seconds the server should send a 200 response with a message as
         follows:
         <Json
+          expectation={true}
           object={{
             status: 200,
             message: "Success",
           }}
         />
       </p>
+      <br />
     </>
   );
 }

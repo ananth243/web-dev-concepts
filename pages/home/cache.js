@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
-import { post } from "axios";
+import { get } from "axios";
 import UrlContext from "../../Providers/UrlContext";
 import AuthContext from "../../Providers/AuthContext";
 import { useRouter } from "next/router";
@@ -23,14 +23,10 @@ function Cache() {
   async function cache() {
     let intial = new Date();
     try {
-      await post(`http://localhost:${url}`, {
+      await get(`http://localhost:${url}/cache`, {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          name: "John Doe",
-          cache: true,
-        }),
       });
       let end = new Date();
       return end.getTime() - intial.getTime();
@@ -38,21 +34,38 @@ function Cache() {
       console.log(e);
     }
   }
-  function execute() {
-    let result = [];
-    setTimeout(async () => {
-      const res = await cache();
-      result.push(res);
-    }, 1000);
-    setTimeout(async () => {
-      const res = await cache();
-      result.push(res);
-    }, 3000);
-    setTimeout(() => {
-      if (result[1] <= result[0] / 10) {
-        return true;
-      } else return false;
-    }, 5000);
+  async function execute() {
+    if (!isNaN(url) && url !== "") {
+      try {
+        let result = [];
+        setTimeout(async () => {
+          const res = await cache();
+          result.push(res);
+        }, 1000);
+        setTimeout(async () => {
+          const res = await cache();
+          result.push(res);
+        }, 3000);
+        setTimeout(() => {
+          if (result[1] <= result[0] / 10) {
+            setMessage({
+              status: true,
+              message: "Cache is working fine",
+            });
+          } else setMessage({ status: false, message: "Cache is not working" });
+        }, 5000);
+      } catch (error) {
+        setMessage({
+          status: false,
+          message: error.message || "Uknown error occured",
+        });
+      }
+    } else {
+      setMessage({
+        status: false,
+        message: "Please enter a valid port number",
+      });
+    }
   }
   return (
     <>
@@ -108,10 +121,11 @@ export function problem() {
           <h1 className="text-blue-400 inline">&nbsp;aggregations</h1>
         </Link>
         . This time I assume you have saved the data. Now the goal of the task
-        is that the second request that the server performs should take less time
-        than the first because of the caching on server side. So keep that in
-        mind that the algorithm used in this app may not be perfect and you may
-        get an error message even though you are right. So open the networks tab and try it out for yourself.
+        is that the second request that the client performs should take less
+        time than the first because of the caching on server side. So keep that
+        in mind that the algorithm used in this app may not be perfect and you
+        may get an error message even though you are right. So open the networks
+        tab and try it out for yourself. Or use Postman if you have it.
       </p>
     </>
   );

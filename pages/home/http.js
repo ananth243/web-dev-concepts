@@ -23,18 +23,18 @@ function Http() {
   async function execute() {
     if (!isNaN(url) && url !== "") {
       try {
-        const res = await axios.get(`http://localhost:${url}` + "http");
-        const res2 = await axios.post(`http://localhost:${url}` + "http", {
+        const res = await axios.get(`http://localhost:${url}/requests`);
+        const res2 = await axios.post(`http://localhost:${url}/requests`, {
           message: "Hey there!",
         });
-        const res3 = await axios.delete(url + "http");
+        const res3 = await axios.delete(`http://localhost:${url}/requests`);
         if (
           res.status === 200 &&
-          res2.status == 201 &&
-          res.status === 204 &&
-          res.data === mock &&
-          res2.data === mock &&
-          res3.data === mock
+          res2.status == 200 &&
+          res.status === 200 &&
+          res.data.message === "Success" &&
+          res2.data.message === "Success" &&
+          res3.data.message === "Success"
         ) {
           setMessage({
             status: true,
@@ -80,14 +80,14 @@ function description() {
         PUT, DELETE.
       </p>
       <p className="text-xl">
-        It would be intuitive to think that these requests can&apos;t be
-        modified but that is not true. Example: I can actually make a POST
-        request that ends up deleting data. In essence thats a delete request.
+        It would be intuitive to think that these requests cant be modified but
+        that is not true. Example: I can actually make a POST request that ends
+        up deleting data. In essence thats a delete request.
       </p>
       <p className="text-xl">
         So these are just general conventions followed in the web. So if you
-        want to delete data on the server it&apos;s not neccessary to use a
-        DELETE request.
+        want to delete data on the server its not neccessary to use a DELETE
+        request.
       </p>
     </>
   );
@@ -96,10 +96,11 @@ function description() {
 function problem() {
   return (
     <p className="text-xl">
-      This server will send a GET, POST and DELETE request to /http and it
-      expects a response of 200, 201, and 204 for each respectively with a json
+      This server will send a GET, POST and DELETE request to /requests and it
+      expects a response of 200 for each respectively with a json
       response of{" "}
       <Json
+        expectation={true}
         object={{
           status: "The respective status code",
           message: "Success",

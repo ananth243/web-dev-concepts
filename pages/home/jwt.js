@@ -6,6 +6,7 @@ import UrlContext from "../../Providers/UrlContext";
 import Page from "../../components/Page";
 import AuthContext from "../../Providers/AuthContext";
 import { useRouter } from "next/router";
+import { decode, verify } from "jsonwebtoken";
 
 function Jwt() {
   const { url } = useContext(UrlContext);
@@ -13,6 +14,7 @@ function Jwt() {
     status: null,
     message: null,
   });
+  const [secret, setSecret] = useState("");
   const { state } = useContext(AuthContext);
   const router = useRouter();
   useEffect(() => {
@@ -20,17 +22,63 @@ function Jwt() {
       router.push("/");
     }
   }, [state, router]);
+
+  function problem() {
+    return (
+      <>
+        <p className="text-xl">
+          There will be a POST request sent to /jwt with the following data:
+          <br />
+          <Json
+            object={{
+              name: "John Doe",
+              secretPassword: "12345",
+            }}
+          />
+          <br />
+          The server will return a JWT. The payload of the jwt will be the users
+          data as follows:
+          <br />
+          <Json
+            object={{
+              name: "John Doe",
+              timestamp: "Date of creation",
+            }}
+          />
+          <br />
+          <input
+            type="text"
+            className="text-black px-2 py-1 rounded"
+            onChange={(e) => {
+              setSecret(e.target.value);
+            }}
+            placeholder="Your jwt secret used"
+          />
+        </p>
+        <br />
+      </>
+    );
+  }
+
   async function execute() {
     if (!isNaN(url) && url !== "") {
       try {
-        body = JSON.stringify({
+        const body = {
           name: "John Doe",
           secretPassword: "12345",
-        });
-        const response = await axios.post(`http://localhost:${url}`, body);
-        if (response.status === 200 && response.data === "Hello World") {
-          setMessage({ success: true, message: "Success!" });
-          return true;
+        };
+        const response = await axios.post(`http://localhost:${url}/jwt`, body);
+        if (response.status === 200) {
+          const { jwt } = response.data;
+          const payload = await decode(jwt);
+          if (payload.name === "John Doe" && payload.iat && payload.exp) {
+            const verified = await verify(jwt, secret);
+            if (verified) {
+              setMessage({ status: true, message: "Success!" });
+            } else {
+              setMessage({ status: false, message: "Tampered jwt" });
+            }
+          }
         } else throw Error("Invalid fields sent");
       } catch (error) {
         setMessage({ status: false, message: error.message });
@@ -60,8 +108,8 @@ function description() {
   return (
     <>
       <div className="text-xl">
-        Json Web Tokens are an industry standard for storing user&apos;s data on
-        the client side. They are very hard to tamper with without knowing the
+        Json Web Tokens are an industry standard for storing users data on the
+        client side. They are very hard to tamper with without knowing the
         secret that is used to encrypt them. If you have 2 servers using the
         same user info the same jwt can be used to communicate between them if
         they are both using the same secret. For more info head to this
@@ -78,32 +126,4 @@ function description() {
   );
 }
 
-function problem() {
-  return (
-    <p className="text-xl">
-      There will be a POST request sent to the server with the following data:
-      <br />
-      <Json
-        object={{
-          name: "John Doe",
-          secretPassword: "12345",
-        }}
-      />
-      <br />
-      The server will return a JWT. The payload of the jwt will be the
-      user&apos;s data as follows:
-      <br />
-      <Json
-        object={{
-          name: "John Doe",
-          timestamp: "Date of creation",
-        }}
-      />
-      After this you should also send a GET request to &apos;/api/jwt&apos;. The
-      request should include the token in a header called token.
-      <br />
-      The secret you should use for this entire practice should be test12
-    </p>
-  );
-}
 export default Jwt;

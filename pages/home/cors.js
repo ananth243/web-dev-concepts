@@ -24,8 +24,7 @@ export default function Cors() {
       try {
         const response = await get(`http://localhost:${url}` + "/cors");
         if (response.status === 200 && response.data === "Hello World") {
-          setMessage({ success: true, message: "Success!" });
-          return true;
+          setMessage({ status: true, message: "Success!" });
         } else throw Error("Invalid fields sent");
       } catch (error) {
         setMessage({ success: false, message: error.message });
@@ -73,9 +72,8 @@ function problem() {
   return (
     <>
       <p className="text-xl">
-        As soon as you click submit, the website will send a GET request to
-        &apos;/&apos; on your server. It should respond with &quot;Hello
-        World&quot; indicating a success
+        As soon as you click submit, the website will send a GET request to / on
+        your server. It should respond with Hello World indicating a success
       </p>
       <br />
     </>

@@ -69,7 +69,7 @@ function description() {
       <p className="text-xl">
         There are various ways you can transmit data to the server. You can use
         headers, the body of a post request but what about an id? What if you
-        also needed to render specific pages for specific id&apos;s also?
+        also needed to render specific pages for specific ids also?
       </p>
     </>
   );
@@ -82,8 +82,8 @@ function problem() {
       <br />
       <ol>
         <li>
-          Get request to: <code>&apos;/dynamic/(Whatever id I want)&apos;</code>{" "}
-          <br /> and it expects a json response of{" "}
+          Get request to: <code>/dynamic/(Whatever id I want)</code> <br /> and
+          it expects a json response of{" "}
           <Json
             object={{
               id: "The id sent",
@@ -91,7 +91,7 @@ function problem() {
           />
         </li>
         <li>
-          Get request to: <code>&apos;/dynamic/?name=(Some name)&apos;</code>
+          Get request to: <code>/dynamic/?name=(Some name)</code>
           <br /> and it expects a json response of{" "}
           <Json
             object={{

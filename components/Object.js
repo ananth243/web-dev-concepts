@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
-function Json({object}) {
+function Json({ object, expectation = false }) {
   return (
-    <pre>{JSON.stringify(object, null, 4)}</pre>
-  )
+    <pre className={expectation ? "text-green-400" : "text-red-400"}>
+      {JSON.stringify(object, null, 4)}
+    </pre>
+  );
 }
 
-export default Json
+export default Json;

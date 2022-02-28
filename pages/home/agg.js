@@ -9,6 +9,20 @@ import { db } from "../../config/Firebase";
 import { useRouter } from "next/router";
 import Json from "../../components/Object";
 
+function validate(expectation, result) {
+  let truth = false;
+  const index = Math.floor(Math.random() * 12) + 1;
+  const field = expectation[index];
+  result.forEach((doc) => {
+    if (doc.department === field.department) {
+      if (doc.average === field.average) {
+        truth = true;
+        return;
+      }
+    }
+  });
+  return truth;
+}
 function Agg() {
   const { url } = useContext(UrlContext);
   const [message, setMessage] = useState({
@@ -25,31 +39,46 @@ function Agg() {
   async function execute() {
     if (!isNaN(url) && url !== "") {
       try {
-        const body = await getDocs(collection(db, "aggregate"));
+        let body = [];
+        const data = await getDocs(collection(db, "aggregate"));
+        data.forEach((doc) => body.push(doc.data()));
         const expectation = [
-          { department: "Legal", average: 47.57142857142857 },
-          { department: "Training", average: 40.166666666666664 },
-          { department: "Sales", average: 63.214285714285715 },
-          { department: "Human Resources", average: 55.42857142857143 },
-          { department: "Services", average: 50.61538461538461 },
+          {
+            department: "Human Resources",
+            average: Math.round(55.42857142857143),
+          },
           {
             department: "Research and Development",
-            average: 39.888888888888886,
+            average: Math.round(39.888888888888886),
           },
-          { department: "Accounting", average: 60.8 },
-          { department: "Business Development", average: 64.33333333333333 },
-          { department: "Support", average: 52 },
-          { department: "Marketing", average: 56.25 },
-          { department: "Product Management", average: 48.81818181818182 },
-          { department: "Engineering", average: 29.555555555555557 },
+          { department: "Legal", average: Math.round(47.57142857142857) },
+          {
+            department: "Product Management",
+            average: Math.round(48.81818181818182),
+          },
+          { department: "Accounting", average: Math.round(60.8) },
+          { department: "Sales", average: Math.round(63.214285714285715) },
+          {
+            department: "Business Development",
+            average: Math.round(64.33333333333333),
+          },
+          { department: "Training", average: Math.round(40.166666666666664) },
+          { department: "Marketing", average: Math.round(56.25) },
+          { department: "Support", average: Math.round(52) },
+          {
+            department: "Engineering",
+            average: Math.round(29.555555555555557),
+          },
+          { department: "Services", average: Math.round(50.61538461538461) },
         ];
         const response = await post(
           `http://localhost:${url}` + "/aggregate",
           body
         );
-        if (response === expectation) {
+        const validation = validate(expectation, response.data);
+        console.log(validation);
+        if (validation) {
           setMessage({ status: true, message: "Success" });
-          return true;
         } else {
           setMessage({ status: false, message: "Invalid fields sent" });
           return false;
@@ -82,12 +111,12 @@ function description() {
     <>
       <p className="text-xl">
         Aggregation pipelines are used to aggregate data from multiple
-        collections. Imagine a database full of records of subjects and
-        student&apos;s marks in it. Now you are supposed to find the average
-        mark of each subject. Now what you could do is to loop over all
-        documents, if the subject was math, increment the math sum variable and
-        finally divide by total number of students and you have to do this for
-        each subject. This is a very inefficient way of doing it.
+        collections. Imagine a database full of records of subjects and students
+        marks in it. Now you are supposed to find the average mark of each
+        subject. Now what you could do is to loop over all documents, if the
+        subject was math, increment the math sum variable and finally divide by
+        total number of students and you have to do this for each subject. This
+        is a very inefficient way of doing it.
       </p>
       <p className="text-xl">
         So aggregation pipelines give you the flexibility to cretae, modify and
@@ -122,6 +151,7 @@ function problem() {
         aggregation where the response should have data of the form:
         <br />
         <Json
+          expectation={true}
           object={{
             department: "Accounting",
             average: "Average mark of the department",

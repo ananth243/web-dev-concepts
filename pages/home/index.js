@@ -49,68 +49,54 @@ export default function Home() {
       description:
         "JWT's are the similar to cookies. Only thing is that they store user's info on the client side and not the server.",
     },
-    // {
-    //   id: 5,
-    //   name: "Authorization",
-    //   link: "/home/auth",
-    //   description:
-    //     "Authorization is the process of authenticating a user. It is a way of identifying a user.",
-    // },
-    // {
-    //   id: 6,
-    //   name: "CSRF Tokens",
-    //   link: "/home/csrf",
-    //   description:
-    //     "CSRF is a way of preventing cross site request forgery. It is a way of protecting the user's data submitted to the server.",
-    // },
-    // {
-    //   id: 7,
-    //   name: "Web Sockets",
-    //   link: "/home/ws",
-    //   description:
-    //     "Web sockets are a way of communicating with a server without having to use a page refresh. It is a way of communicating with a server without having to use a page refresh.",
-    // },
     {
-      id: 8,
+      id: 5,
+      name: "Web Sockets",
+      link: "/home/ws",
+      description:
+        "Web sockets are a way of communicating with a server without having to use a page refresh. It is a way of communicating with a server without having to use a page refresh.",
+    },
+    {
+      id: 6,
       name: "Rate Limiting",
       link: "/home/rate",
       description:
         "Rate limiting is a way of limiting the number of requests that can be made to a server.",
     },
     {
-      id: 9,
+      id: 7,
       name: "Aggregations",
       link: "/home/agg",
       description:
         "Aggregations are a way of combining data from multiple sources.",
     },
-    // {
-    //   id: 10,
-    //   name: "SQL Injections",
-    //   link: "/home/sql",
-    //   description:
-    //     "SQL Injections are a way of injecting SQL queries into a database. This is prehaps one of the most dangerous attacks on a website.",
-    // },
+    {
+      id: 8,
+      name: "Caching",
+      link: "/home/cache",
+      description:
+      "Caching is a way of storing data on the server. It is a way of storing data on the server.",
+    },
+    {
+      id: 9,
+      name: "Streams",
+      link: "/home/stream",
+      description:
+      "Streams are a way of handling data as it is being sent from the server to the client.",
+    },
+    {
+      id: 10,
+      name: "SQL Injections",
+      link: "/home/sql",
+      description:
+        "SQL Injections are a way of injecting SQL queries into a database. This is prehaps one of the most dangerous attacks on a website.",
+    },
     {
       id: 11,
       name: "XSS",
       link: "/home/xss",
       description:
         "XSS is a way of injecting code into a website. Also very dangerous if you don't code the backend properly",
-    },
-    {
-      id: 12,
-      name: "Caching",
-      link: "/home/cache",
-      description:
-        "Caching is a way of storing data on the server. It is a way of storing data on the server.",
-    },
-    {
-      id: 13,
-      name: "Streams",
-      link: "/home/stream",
-      description:
-        "Streams are a way of handling data as it is being sent from the server to the client.",
     },
   ];
   return (

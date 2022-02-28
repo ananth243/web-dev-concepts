@@ -70,8 +70,8 @@ export default function Modal({ name, description, credits = false }) {
                     {credits ? description : <Description />}
                     {credits && (
                       <form>
-                        Describe your issue in brief and we&apos;ll have someone
-                        get back to you
+                        Describe your issue in brief and well have someone get
+                        back to you
                         <label htmlFor="issue">Issue</label>
                         <textarea
                           name="issue"

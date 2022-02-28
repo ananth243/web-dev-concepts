@@ -23,15 +23,13 @@ function Headers() {
   async function execute() {
     if (!isNaN(url) && url !== "") {
       try {
-        const cookie = Math.floor(Math.random() * 1000000);
-        document.cookie = `username=${cookie}`;
         const token = Math.floor(Math.random() * 1000000);
         const response = await axios.get(`http://localhost:${url}/headers`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        if (response.data.cookie === cookie && response.data.token == token) {
+        if (response.data.token == token) {
           setMessage({
             status: true,
             message: "Success",
@@ -92,14 +90,14 @@ function problem() {
     <p className="text-xl">
       So the client is going to make the following request:
       <br />
-      Get request to:
-      <code>&apos;/headers&apos;</code> along with the cookie, &apos;token&apos;
-      in the and authorization header
+      Get request to&nbsp;
+      <code>/headers</code> along with the cookie, token in the and
+      authorization header
       <br />
       and it expects a json response of{" "}
       <Json
+        expectation={true}
         object={{
-          cookie: "The cookie value",
           token: "The token value",
         }}
       />

@@ -4,9 +4,10 @@ import AuthContext from "../../Providers/AuthContext";
 import { useRouter } from "next/router";
 import Page from "../../components/Page";
 import UrlContext from "../../Providers/UrlContext";
+import { get } from "axios";
 
 function Stream() {
-  const {url} = useContext(UrlContext);
+  const { url } = useContext(UrlContext);
   const { state } = useContext(AuthContext);
   const [message, setMessage] = useState({
     status: false,
@@ -21,8 +22,9 @@ function Stream() {
   async function execute() {
     if (!isNaN(url) && url !== "") {
       try {
-        const response = await get(`http://localhost:${url}` + "/stream", body);
+        const response = await get(`http://localhost:${url}` + "/stream");
         if (response) {
+          console.log(response);
           setMessage({ status: true, message: "Success" });
           return true;
         } else {
@@ -62,21 +64,22 @@ function description() {
       <p className="text-xl">
         In the core nodejs module fs we are offered with a few methods that are
         used to read and write files such as createReadStream and
-        createWriteStream. An example of this is present in{" "}
-        <code>/api/stream</code>
-      </p>
-      <p className="text-xl">
-        For example by clicking this{" "}
-        <a download href="/api/stream" className="text-blue-400">
-          link
-        </a>
-        &nbsp;it will trigger a download
+        createWriteStream.
       </p>
       <p className="text-xl">
         Now why are streams important. Imagine you had to transfer 200 gb of
         data across the internet through a server that has a hypothetical ram of
         20 GB. See the issue? You would need to break the 200 gb into 20 gb
-        chunks and send them to the server which is what streams do.
+        chunks and send them to the server which is what streams do. For more
+        information regarding streams in nodejs check out this{" "}
+        <a
+          href="https://nodesource.com/blog/understanding-streams-in-nodejs/"
+          className="text-blue-400"
+          target="_blank"
+          rel="noreferrer"
+        >
+          blog
+        </a>
       </p>
     </>
   );
@@ -88,7 +91,8 @@ function problem() {
       <p className="text-xl">
         Create any file you want to. Can be a pdf or a txt file also. When you
         are ready the server will send a get request to /stream. You have to
-        read the file contents and send the contents as the response.
+        read the file contents and send the contents as the response. and it
+        will be available in the browser console.
       </p>
     </>
   );
