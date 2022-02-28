@@ -24,11 +24,11 @@ function Methods() {
     if (!isNaN(url) && url !== "") {
       try {
         const id = Math.random() * 2000;
-        const get = await axios.get(`http://localhost:${url}` + `/${id}`);
+        const result = await axios.get(`http://localhost:${url}/dynamic/${id}`);
         const json = await axios.get(
-          `http://localhost:${url}` + "?name=John Doe"
+          `http://localhost:${url}/dynamic/?name=John Doe`
         );
-        if (json.data.name === "John Doe" && get.data.id === id) {
+        if (json.data.name === "John Doe" && parseFloat(result.data.id )=== id) {
           setMessage({
             status: true,
             message: "Success",

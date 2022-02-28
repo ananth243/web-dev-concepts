@@ -30,10 +30,10 @@ export default function Home() {
     },
     {
       id: 2,
-      name: "HTTP methods",
+      name: "HTTP Parameters",
       link: "/home/methods",
       description:
-        "There are different http methods that can be used to perform a request such as query parameters etc...",
+        "There are different http parameters that can be used to covey data such as query parameters etc...",
     },
     {
       id: 3,
@@ -51,52 +51,52 @@ export default function Home() {
     },
     {
       id: 5,
-      name: "Web Sockets",
-      link: "/home/ws",
-      description:
-        "Web sockets are a way of communicating with a server without having to use a page refresh. It is a way of communicating with a server without having to use a page refresh.",
-    },
-    {
-      id: 6,
       name: "Rate Limiting",
       link: "/home/rate",
       description:
-        "Rate limiting is a way of limiting the number of requests that can be made to a server.",
+      "Rate limiting is a way of limiting the number of requests that can be made to a server.",
     },
     {
-      id: 7,
+      id: 6,
       name: "Aggregations",
       link: "/home/agg",
       description:
         "Aggregations are a way of combining data from multiple sources.",
     },
     {
-      id: 8,
+      id: 7,
       name: "Caching",
       link: "/home/cache",
       description:
       "Caching is a way of storing data on the server. It is a way of storing data on the server.",
     },
     {
-      id: 9,
+      id: 8,
       name: "Streams",
       link: "/home/stream",
       description:
       "Streams are a way of handling data as it is being sent from the server to the client.",
     },
     {
-      id: 10,
+      id: 9,
       name: "SQL Injections",
       link: "/home/sql",
       description:
         "SQL Injections are a way of injecting SQL queries into a database. This is prehaps one of the most dangerous attacks on a website.",
     },
     {
-      id: 11,
+      id: 10,
       name: "XSS",
       link: "/home/xss",
       description:
-        "XSS is a way of injecting code into a website. Also very dangerous if you don't code the backend properly",
+      "XSS is a way of injecting code into a website. Also very dangerous if you don't code the backend properly",
+    },
+    {
+      id: 11,
+      name: "Web Sockets",
+      link: "/home/ws",
+      description:
+        "Web sockets are a way of communicating with a server without having to use a page refresh.",
     },
   ];
   return (

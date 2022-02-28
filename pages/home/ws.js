@@ -4,7 +4,8 @@ import AuthContext from "../../Providers/AuthContext";
 import { useRouter } from "next/router";
 import UrlContext from "../../Providers/UrlContext";
 import Page from "../../components/Page";
-import { io } from "socket.io-client";
+import io from 'socket.io-client'
+let socket;
 
 function Ws() {
   const { url } = useContext(UrlContext);
@@ -18,13 +19,19 @@ function Ws() {
     if (!state) {
       router.push("/");
     }
+    // socketInitializer()
   }, [state, router]);
 
+  const socketInitializer = async () => {
+    socket = io(`http://localhost:${url}`)
+    socket.on('connect', () => {
+      console.log('connected')
+    })
+  }
+  
   async function execute() {
     if (isNaN(url) && url !== "") {
       try {
-        const endpoint = `http://localhost:${url}/socket`;
-        const socket = io(endpoint);
         socket.emit("talk", "Hello");
         socket.on("talk", (data) => {
           if (data === "Hello") {
@@ -54,9 +61,6 @@ function Ws() {
       <Navbar title="Socket Connections" />
       <Page
         description={description}
-        problem={problem}
-        execute={execute}
-        message={message}
       />
     </>
   );
