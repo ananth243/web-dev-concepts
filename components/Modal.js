@@ -16,7 +16,16 @@ function Description() {
       >
         riskycase
       </a>
-      &nbsp;for helping me out with the frontend
+      &nbsp;for helping me out with the frontend. If you need help when you are stuck, you can refer to this 
+      <a
+        href="https://github.com/ananth243/Practice-problem-solutions"
+        className="text-blue-400"
+        target="_blank"
+        rel="noreferrer"
+      >
+        repo
+      </a>
+      &nbsp; and feel free to submit a PR if you wanna add/modify a feature.
     </div>
   );
 }

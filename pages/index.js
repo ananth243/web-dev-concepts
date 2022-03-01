@@ -20,7 +20,7 @@ export default function Home() {
           <Typewriter
             onInit={(typewriter) => {
               typewriter
-                .typeString("Welcome.")
+                .typeString("Welcome")
                 .pauseFor(1000)
                 .deleteAll()
                 .typeString("This site tests out your WebD knowledge")
