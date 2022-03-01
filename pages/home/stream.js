@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import Navbar from "../../components/Navbar";
 import AuthContext from "../../Providers/AuthContext";
 import { useRouter } from "next/router";
@@ -47,7 +47,7 @@ function Stream() {
         execute={execute}
         message={message}
         description={description}
-        problem={problem}
+        problem={Problem}
       />
     </>
   );
@@ -85,15 +85,38 @@ function description() {
   );
 }
 
-function problem() {
+function Problem() {
+  const iframeRef = useRef();
   return (
     <>
       <p className="text-xl">
         Create any file you want to. Can be a pdf or a txt file also. When you
         are ready the server will send a get request to /stream. You have to
         read the file contents and send the contents as the response. and it
-        will be available in the browser console.
+        will be available in the browser console.&nbsp;
+      <a
+        href="/stream.js"
+        className="text-blue-400 text-xl"
+        target="_blank"
+        rel="noreferrer"
+      >
+        Source file
+      </a>&nbsp; for below code
       </p>
+      <iframe
+        src="/stream.js"
+        ref={iframeRef}
+        frameBorder="0"
+        title="Streams"
+        className="h-80"
+        onLoad={() => {
+          const frame = iframeRef.current;
+          let body = frame.contentWindow.document.querySelector("body");
+          body.style.color = "white";
+          body.style.fontSize = "1.25rem";
+          body.style.lineHeight = "1.25rem";
+        }}
+      ></iframe>
     </>
   );
 }
