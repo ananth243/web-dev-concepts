@@ -119,10 +119,10 @@ function description() {
         is a very inefficient way of doing it.
       </p>
       <p className="text-xl">
-        So aggregation pipelines give you the flexibility to cretae, modify and
+        So aggregation pipelines give you the flexibility to create, modify and
         delete fields and group data from different collections (in mongodb, in
         SQL, tables) and it becomes very efficient and beneficial in terms of
-        spped to the application.
+        speed to the application.
       </p>
       <p className="text-red-600 text-xl">
         Note: If you have already saved the data and are trying this operation

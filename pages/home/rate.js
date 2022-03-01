@@ -95,15 +95,10 @@ function problem() {
     <>
       <p className="text-xl">
         This server will send a series of requests to /rate. After 3 requests
-        within 4 seconds, your server should send a 429 response with a message
-        as follows:
-        <Json
-          expectation={true}
-          object={{ status: 429, error: "Too many requests" }}
-        />
+        within 4 seconds, your server should send a 429 response blocking further requests in this 4 second period.
       </p>
       <p className="text-xl">
-        After 4 seconds the server should send a 200 response with a message as
+        After 4 seconds the server should send a 200 response, when a request is made, with a response as
         follows:
         <Json
           expectation={true}

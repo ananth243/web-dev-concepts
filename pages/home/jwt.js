@@ -111,7 +111,7 @@ function description() {
         Json Web Tokens are an industry standard for storing users data on the
         client side. They are very hard to tamper with without knowing the
         secret that is used to encrypt them. If you have 2 servers using the
-        same user info the same jwt can be used to communicate between them if
+        same user info, the same jwt can be used to communicate between them if
         they are both using the same secret. For more info head to this
         <a
           target="_blank"

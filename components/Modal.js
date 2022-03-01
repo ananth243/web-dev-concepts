@@ -16,7 +16,7 @@ function Description() {
       >
         riskycase
       </a>
-      &nbsp;for helping me out with the frontend. If you need help when you are stuck, you can refer to this 
+      &nbsp;for helping me out with the frontend. If you need help when you are stuck, you can refer to this &nbsp;
       <a
         href="https://github.com/ananth243/Practice-problem-solutions"
         className="text-blue-400"
