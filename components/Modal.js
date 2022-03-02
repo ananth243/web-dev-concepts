@@ -25,7 +25,16 @@ function Description() {
       >
         repo
       </a>
-      &nbsp; and feel free to submit a PR if you wanna add/modify a feature.
+      . For any issues you can use this
+      &nbsp;
+      <a
+        href="https://forms.gle/C2qasZipcSYbv73V6"
+        className="text-blue-400"
+        target="_blank"
+        rel="noreferrer"
+      >
+        link
+      </a>&nbsp; to report them. You can even suggest a feature you want to add.
     </div>
   );
 }
