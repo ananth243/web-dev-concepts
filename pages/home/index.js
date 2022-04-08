@@ -65,10 +65,10 @@ export default function Home() {
     },
     {
       id: 7,
-      name: "Caching",
-      link: "/home/cache",
+      name: "Web Sockets",
+      link: "/home/ws",
       description:
-      "Caching is a way of storing data on the server. It is a way of storing data on the server.",
+        "Web sockets are a way of communicating with a server without having to use a page refresh.",
     },
     {
       id: 8,
@@ -79,24 +79,24 @@ export default function Home() {
     },
     {
       id: 9,
+      name: "Caching",
+      link: "/home/cache",
+      description:
+      "Caching is a way of storing data on the server. It is a way of storing data on the server.",
+    },
+    {
+      id: 10,
       name: "SQL Injections",
       link: "/home/sql",
       description:
         "SQL Injections are a way of injecting SQL queries into a database. This is prehaps one of the most dangerous attacks on a website.",
     },
     {
-      id: 10,
+      id: 11,
       name: "XSS",
       link: "/home/xss",
       description:
       "XSS is a way of injecting code into a website. Also very dangerous if you don't code the backend properly",
-    },
-    {
-      id: 11,
-      name: "Web Sockets",
-      link: "/home/ws",
-      description:
-        "Web sockets are a way of communicating with a server without having to use a page refresh.",
     },
   ];
   return (

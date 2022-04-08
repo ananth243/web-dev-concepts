@@ -18,7 +18,7 @@ export default function Home() {
     <div className="h-screen flex flex-col">
       <Navbar />
       <div className="p-10 flex justify-center content-center flex-grow items-center flex-col space-y-8">
-        <Image src={landing} />
+        <Image alt="Landing Page" src={landing} />
         <p className="font-mono text-4xl">
           <Typewriter
             onInit={(typewriter) => {

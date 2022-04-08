@@ -1,11 +1,9 @@
 import Navbar from "../components/Navbar";
 import Typewriter from "typewriter-effect";
-import { useEffect, useContext } from "react";
-import AuthContext from "../Providers/AuthContext";
 import { useRouter } from "next/router";
+
 export default function Home() {
   const router = useRouter();
-  const { state, setState } = useContext(AuthContext);
   setTimeout(()=>{
       router.push('/home');
   }, 8000);
